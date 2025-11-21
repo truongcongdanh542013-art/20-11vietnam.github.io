@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 15vh;
+      font-size: 2.8em;
+      color: #fff;
+      text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff69b4; }
+      to { text-shadow: 0 0 20px #ff1493; }
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #fff8f0;
+      text-shadow: 0 0 10px #ffb6c1;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff69b4;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+      box-shadow: 0 0 20px #ff1493;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 🌸</h1>
+  <p>Kính chúc thầy cô luôn mạnh khỏe, hạnh phúc và tràn đầy nhiệt huyết!</p>
+  <button onclick="playMusic()">Phát nhạc 🎵</button>
+
+  <canvas id="canvas"></canvas>
+
+  <audio id="bgm" loop>
+    <source src="https://files.catbox.moe/q8kvmh.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // 💖 Hoa rơi
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const petals = [];
+    for (let i = 0; i < 100; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 6 + 2,
+        d: Math.random() * 2 + 1
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(255, 182, 193, 0.8)';
+      ctx.beginPath();
+      for (let i = 0; i < petals.length; i++) {
+        const p = petals[i];
+        ctx.moveTo(p.x, p.y);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+      }
+      ctx.fill();
+      update();
+    }
+
+    function update() {
+      for (let i = 0; i < petals.length; i++) {
+        const p = petals[i];
+        p.y += p.d;
+        if (p.y > height) {
+          p.y = 0 - p.r;
+          p.x = Math.random() * width;
+        }
+      }
+    }
+
+    setInterval(draw, 30);
+
+    // 🎵 Nhạc nền
+    function playMusic() {
+      const audio = document.getElementById("bgm");
+      audio.play();
+      alert("🌼 Chúc bạn một ngày 20/11 thật vui vẻ và ý nghĩa!");
+    }
+  </script>
+</body>
+</html>
